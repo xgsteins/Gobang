@@ -91,7 +91,7 @@ let clientIdNum = new Array();
 
 const clientId = [
     "先辈", "奥尔加", "田所浩二", "蛤", "苟", "利", "国", "家", "生", "死", "以",
-    "长门大明神", "团长", "泉此方", "阿虚", "射命丸·搞个大新·文", "博丽灵梦", "雾雨魔理莎", "恋💙恋",
+    "长门大明神", "团长", "泉此方", "阿虚", "射命丸·搞个大新·文", "博丽灵梦", "雾雨魔理沙", "恋💙恋",
     "Devil Man", "⑨", "路过的Otaku", "咕咕咕", "复读机", "杰哥"
 ]
 
@@ -118,9 +118,9 @@ server.on('connection', function connection(ws, req) {
     */
     clientSockets.push([ws, req]);
     console.log(clientId.length);
-    let idMakeNum = Math.floor(Math.random()*clientId.length);
-    while(clientIdNum.indexOf(idMakeNum) != -1) {
-        idMakeNum = Math.floor(Math.random()*clientId.length);
+    let idMakeNum = Math.floor(Math.random() * clientId.length);
+    while (clientIdNum.indexOf(idMakeNum) != -1) {
+        idMakeNum = Math.floor(Math.random() * clientId.length);
     }
     clientIdNum.push(idMakeNum);
     clientIdIndex.set(clientName, idMakeNum);
@@ -188,12 +188,12 @@ server.on('connection', function connection(ws, req) {
 
             case ':':
                 clientSockets.forEach(value => {
-                    let nowClientName = value[1].connection.remoteAddress+":"+value[1].connection.remotePort;
+                    let nowClientName = value[1].connection.remoteAddress + ":" + value[1].connection.remotePort;
                     console.log(nowClientName);
                     console.log(clientIdIndex);
                     if (nowClientName != clientName) {
-                        value[0].send(":"+clientId[clientIdIndex.get(nowClientName)]+
-                                      ":"+message.substring(1, message.size));
+                        value[0].send(":" + clientId[clientIdIndex.get(nowClientName)] +
+                            ":" + message.substring(1, message.size));
                     }
                 });
                 break;
