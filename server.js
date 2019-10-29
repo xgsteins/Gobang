@@ -7,8 +7,12 @@ const server = new WebSocket.Server({ port: 8080 });
 'use strict'
 
 let board = new Array(15);
-
 let moveInd = 0;
+const position = {
+    '0': 0, '1': 1, '2': 2, '3': 3, '4': 4,
+    '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+    'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14
+};
 
 function inBoard(x, y) {
     return x >= 0 && x < 15 && y >= 0 && y < 15;
@@ -85,15 +89,10 @@ let playerSockets = new Array();
 let clientIdIndex = new Map();
 let clientIdNum = new Array();
 
-const position = {
-    '0': 0, '1': 1, '2': 2, '3': 3, '4': 4,
-    '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
-    'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14
-};
 const clientId = [
     "先辈", "奥尔加", "田所浩二", "蛤", "苟", "利", "国", "家", "生", "死", "以",
-    "长门大明神", "团长", "泉此方", "阿虚", "射命丸·杞个大新·文", "坚丽睵梦", "雾雨魔睆莎", "杋💙杋", 
-    "Devil Man", "⑨", "路过的Otaku", "咕咕咕", "夝读机", "杰哥"
+    "长门大明神", "团长", "泉此方", "阿虚", "射命丸·搞个大新·文", "博丽灵梦", "雾雨魔理莎", "恋💙恋",
+    "Devil Man", "⑨", "路过的Otaku", "咕咕咕", "复读机", "杰哥"
 ]
 
 server.on('connection', function connection(ws, req) {
@@ -109,16 +108,16 @@ server.on('connection', function connection(ws, req) {
         // clientIdIndex.delete[ws];
     });
 
-    
+
     const ip = req.connection.remoteAddress;
     const port = req.connection.remotePort;
     const clientName = ip + ":" + port;
     console.log('%s is connected', clientName);
 
     /*
-        生戝蝊天id
+        生成聊天id
     */
-    // clientSockets.push(ws);
+    clientSockets.push(ws);
     // console.log(clientId.length);
     // let idMakeNum = Math.floor(Math.random()*clientId.length);
     // while(clientIdNum.indexOf(idMakeNum) != -1) {
@@ -126,7 +125,7 @@ server.on('connection', function connection(ws, req) {
     // }
     // clientIdNum.push(idMakeNum);
     // clientIdIndex.set(ws, idMakeNum);
-    
+
     ws.on('message', function incoming(message) {
         switch (message[0]) {
             case 'S':
@@ -190,13 +189,11 @@ server.on('connection', function connection(ws, req) {
 
             case ':':
                 console.log(message);
+
                 clientSockets.forEach(value => {
                     if (value != ws) {
-                        // console.log(":"+clientId[Math.floor(Math.random()*clientId.length)]
-                        //             +":"+message.substring(1, message.size))
-                        // value.send(":"+clientId[Math.floor(Math.random()*clientId.length)]
-                        //             +":"+message.substring(1, message.size));
-                        value.send(message);
+                        value.send(":"+clientId[Math.floor(Math.random()*clientId.length)]
+                                    +":"+message.substring(1, message.size));
                     }
                 });
                 break;
