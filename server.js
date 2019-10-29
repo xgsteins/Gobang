@@ -96,16 +96,15 @@ const clientId = [
 ]
 
 server.on('connection', function connection(ws, req) {
-
     ws.on('open', function open() {
         console.log('connected');
     });
 
     ws.on('close', function close() {
-        clientSockets.splice(clientSockets.indexOf(ws), 1);
+        clientSockets[0].splice(clientSockets[0].indexOf(ws), 1);
         console.log('disconnected');
-        // clientIdNum.splice(clientIdNum.indexOf(clientIdIndex[ws]), 1);
-        // clientIdIndex.delete[ws];
+        clientIdNum.splice(clientIdNum.indexOf(clientIdIndex[ws]), 1);
+        clientIdIndex.delete[clientName];
     });
 
 
@@ -117,14 +116,14 @@ server.on('connection', function connection(ws, req) {
     /*
         生成聊天id
     */
-    clientSockets.push(ws);
-    // console.log(clientId.length);
-    // let idMakeNum = Math.floor(Math.random()*clientId.length);
-    // while(clientIdNum.indexOf(idMakeNum) != -1) {
-    //     idMakeNum = Math.floor(Math.random()*clientId.length);
-    // }
-    // clientIdNum.push(idMakeNum);
-    // clientIdIndex.set(ws, idMakeNum);
+    clientSockets.push([ws, req]);
+    console.log(clientId.length);
+    let idMakeNum = Math.floor(Math.random()*clientId.length);
+    while(clientIdNum.indexOf(idMakeNum) != -1) {
+        idMakeNum = Math.floor(Math.random()*clientId.length);
+    }
+    clientIdNum.push(idMakeNum);
+    clientIdIndex.set(clientName, idMakeNum);
 
     ws.on('message', function incoming(message) {
         switch (message[0]) {
@@ -188,12 +187,13 @@ server.on('connection', function connection(ws, req) {
                 break;
 
             case ':':
-                console.log(message);
-
                 clientSockets.forEach(value => {
-                    if (value != ws) {
-                        value.send(":"+clientId[Math.floor(Math.random()*clientId.length)]
-                                    +":"+message.substring(1, message.size));
+                    let nowClientName = value[1].connection.remoteAddress+":"+value[1].connection.remotePort;
+                    console.log(nowClientName);
+                    console.log(clientIdIndex);
+                    if (nowClientName != clientName) {
+                        value[0].send(":"+clientId[clientIdIndex.get(nowClientName)]+
+                                      ":"+message.substring(1, message.size));
                     }
                 });
                 break;
