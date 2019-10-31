@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>super gobang</title>
+	<link rel="stylesheet" type="text/css" href="./layout.css">
+</head>
+<h3 id="title">super gobang</h3>
+<div id="result"></div>
+<canvas id="chess"></canvas>
+<div id="operate">
+	<span id="start" class="start">开始</span>
+	<span id="befrance" class="befrance">认输</span>
+	<span id="connection" class="connection">unconnected</span>
+</div>
+
+<div class="talk_con">
+	<div class="talk_show" id="words"></div>
+	<div class="talk_input">
+		<input type="text" class="talk_word" id="talkwords" onkeypress="Enter(event)" >
+		<input type="button" value="发送" class="talk_sub" id="talksub">
+	</div>
+</div>
+
+<script src="./gobang.js"></script>
+</body>
+
+</html>

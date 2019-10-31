@@ -1,0 +1,250 @@
+body,
+ol,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+dl,
+dd,
+form,
+fieldset,
+legend,
+input,
+textarea,
+select {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+html {
+    position: relative;
+}
+
+body {
+    background: url('./site_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-text-size-adjust: 100%;
+    /* webkit内核的浏览器(chrome)中,当在css中定义的中文font-size小于12px的时候,浏览器仍然使用12px,这时就可以用-webkit-text-size-adjust:none; */
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #09c7d1;
+    text-decoration: underline;
+}
+
+em {
+    font-style: normal;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+table {
+    border-collapse: collapse;
+    /* 为表格设置合并边框模型： */
+    border-spacing: 0;
+}
+
+p {
+    word-break: break-all;
+}
+
+input,
+button,
+textarea,
+select {
+    outline: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -khtml-border-radius: 0;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #b3b3b3;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #b3b3b3;
+    opacity: 1;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #b3b3b3;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #b3b3b3;
+}
+
+input,
+select,
+textarea {
+    color: #333;
+}
+
+textarea {
+    overflow: auto;
+    resize: none;
+}
+
+
+/*移除input中ie自带的删除功能和密码的眼睛图标*/
+
+input::-ms-clear,
+input::-ms-reveal {
+    display: none;
+}
+
+
+/*覆盖谷歌浏览器中input智能选中时候的背景色*/
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 300px white inset;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#title {
+    text-align: center;
+    font-size: 25px;
+    color: #111;
+    margin: 40px 0 30px 0;
+}
+
+#result {
+    font-size: 20px;
+    color: #111;
+    text-align: center;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    box-shadow: -2px -2px 2px #efefef, 5px5 px 5px #b9b9b9;
+    cursor: pointer;
+}
+
+#operate {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#operate span {
+    background: #111;
+    padding: 6px 10px;
+    margin-left: 20px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #eee;
+    margin-top: 20px;
+}
+
+#operate span:hover {
+    background: #09c7d1;
+    cursor: pointer;
+}
+
+.talk_con {
+    width: 510px;
+    height: 150px;
+    border: 1px solid #666;
+    margin: 50px auto 0;
+    background: rgb(255, 201, 140);
+}
+
+.talk_show {
+    width: 490px;
+    height: 90px;
+    border: 1px solid #666;
+    background: rgb(255, 228, 196);
+    margin: 10px auto 0;
+    overflow: auto;
+}
+
+.talk_input {
+    width: 580px;
+    margin: 10px auto 0;
+}
+
+.whotalk {
+    width: 80px;
+    height: 30px;
+    float: left;
+    outline: none;
+}
+
+.talk_word {
+    width: 420px;
+    height: 26px;
+    padding: 0px;
+    float: left;
+    margin-left: 10px;
+    outline: none;
+    text-indent: 10px;
+}
+
+.talk_sub {
+    width: 56px;
+    height: 30px;
+    float: left;
+    margin-left: 10px;
+}
+
+.atalk {
+    margin: 10px;
+}
+
+.atalk span {
+    display: inline-block;
+    background: rgb(255, 161, 54);
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.btalk {
+    margin: 10px;
+    text-align: right;
+}
+
+.btalk span {
+    display: inline-block;
+    background: rgb(255, 171, 61);
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 10px;
+}
